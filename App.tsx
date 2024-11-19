@@ -1,118 +1,71 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
+import {Button, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+import Header from './Components/Header';
+import Product from './Components/Product';
+import {ScrollView} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Nextpage from './Components/Nextpage';
+import AnmationSecond from './Screens/AnmationSecond';
+import AnimationHome from './Screens/AnimationHome';
+import SelectedItem from './Screens/SelectedItem';
+import Animation2 from './Screens/Animation2';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Second from './Screens/Second';
+const Stack = createNativeStackNavigator();    
+const App = () => {
+  const products = [
+    {name: 'Apple', type: 'Great', Modal: 'New'},
+    {name: 'Nokia', type: 'Oldest', Modal: 'Old'},
+    {name: 'Oppo', type: 'New', Modal: 'Quality'},
+    {name: 'Vivo', type: 'Right', Modal: 'NotKnow'},
+    {name: 'Oppo', type: 'Good', Modal: 'No'},
+    {name: 'Nokia', type: 'Oldest', Modal: 'Old'},
+    {name: 'Nokia', type: 'Oldest', Modal: 'Old'},
+    {name: 'Apple', type: 'New', Modal: 'Quality'},
+    {name: 'Vivo', type: 'Right', Modal: 'NotKnow'},
+    {name: 'Oppo', type: 'Good', Modal: 'No'},
+    {name: 'Nokia', type: 'Oldest', Modal: 'Old'},
+    {name: 'Nokia', type: 'Oldest', Modal: 'Old'},
+    {name: 'Apple', type: 'New', Modal: 'Quality'},
+    {name: 'Vivo', type: 'Right', Modal: 'NotKnow'},
+    {name: 'Oppo', type: 'Good', Modal: 'No'},
+    {name: 'Nokia', type: 'Oldest', Modal: 'Old'},
+  ];
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Product'>
+      <Stack.Screen name="Product" options={{ headerShown: false }}>
+          {(props) => (
+            <View style={styles.container}>
+              <Header />
+              <ScrollView>
+                {products.map(itm => (
+                  <Product itm={itm} key={itm.name} />
+                ))}
+              </ScrollView>
+            </View>
+          )}
+        </Stack.Screen>
+        <Stack.Screen name="Nextpage" component={Nextpage} />
+        <Stack.Screen name="AnimationHome" component={AnimationHome} />
+        <Stack.Screen name="AnmationSecond" component={AnmationSecond} />
+        <Stack.Screen name="SelectedItem" component={SelectedItem} />
+        <Stack.Screen name="Animation2" component={Animation2} />
+        <Stack.Screen name="Second" component={Second} />
+      </Stack.Navigator>
+    </NavigationContainer>
+    </GestureHandlerRootView>
+
   );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+};
 
 export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
