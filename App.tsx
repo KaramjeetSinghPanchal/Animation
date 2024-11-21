@@ -12,6 +12,7 @@ import SelectedItem from './Screens/SelectedItem';
 import Animation2 from './Screens/Animation2';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Second from './Screens/Second';
+import Third from './Screens/Third';
 const Stack = createNativeStackNavigator();    
 const App = () => {
   const products = [
@@ -55,6 +56,7 @@ const App = () => {
         <Stack.Screen name="SelectedItem" component={SelectedItem} />
         <Stack.Screen name="Animation2" component={Animation2} />
         <Stack.Screen name="Second" component={Second} />
+        <Stack.Screen name="Third" component={Third} />
       </Stack.Navigator>
     </NavigationContainer>
     </GestureHandlerRootView>

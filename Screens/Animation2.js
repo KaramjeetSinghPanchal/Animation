@@ -43,7 +43,6 @@ const Animation2 = () => {
            direction="alternate"
            style={{width: '90%',
           fontSize:13,
-          // fontWeight:700,
            position: 'absolute',
            bottom:-420,
            marginLeft:-180,
